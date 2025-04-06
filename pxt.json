@@ -1,9 +1,10 @@
 {
-    "name": "Pong official",
+    "name": "Pong official - Copy",
     "description": "",
     "dependencies": {
         "device": "*",
-        "multiplayer": "*"
+        "multiplayer": "*",
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0"
     },
     "files": [
         "main.blocks",
@@ -16,7 +17,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "2.0.40",
+        "target": "2.0.48",
         "targetId": "arcade"
     },
     "supportedTargets": [
