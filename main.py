@@ -6,13 +6,21 @@ class SpriteKind:
     collision1 = SpriteKind.create()
     collision2 = SpriteKind.create()
 
+
+
 def on_on_overlap(sprite, otherSprite):
-    global score
+    global score, ball2
     score += 1
+    sprites.destroy(ball2)
+    do_something()
     if score >= 10:
-            game.set_game_over_message(True, "Left Side Wins!")
-            game.game_over(True)
+        game.set_game_over_message(True, "Left Side Wins!")
+        game.over(True)
 sprites.on_overlap(SpriteKind.collision1, SpriteKind.projectile, on_on_overlap)
+
+
+
+
 
 def draw_text2(x: number, y: number, text2: str):
     global texty2
@@ -31,12 +39,15 @@ def draw_text(x2: number, y2: number, text3: str):
     return texty
 
 def on_on_overlap3(sprite3, otherSprite3):
-    global score2
-    score2 += 10
-    if score2 >= 1:
+    global score2, ball2
+    score2 += 1
+    sprites.destroy(ball2)
+    do_something()
+    if score2 >= 10:
         game.set_game_over_message(True, "Right Side Wins!")
-        game.game_over(True)
+        game.over(True)
 sprites.on_overlap(SpriteKind.collision2, SpriteKind.projectile, on_on_overlap3)
+
 
 def on_on_overlap2(paddle, ball):
     offset = ball.y - paddle.y
@@ -54,7 +65,6 @@ def on_on_overlap4(paddle, ball):
 
 sprites.on_overlap(SpriteKind.left, SpriteKind.projectile, on_on_overlap2)
 sprites.on_overlap(SpriteKind.right, SpriteKind.projectile, on_on_overlap4)
-
 
 
 def do_something():
@@ -81,9 +91,7 @@ def do_something():
             """),
         SpriteKind.projectile)
     ball2.set_scale(0.3, ScaleAnchor.MIDDLE)
-    ball2.set_velocity(100, 100)
-    ball2.set_stay_in_screen(True)
-    ball2.set_bounce_on_wall(True)
+    ball2.set_velocity(100, 0)
 ball2: Sprite = None
 score2 = 0
 texty: Sprite = None

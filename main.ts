@@ -9,9 +9,11 @@ namespace SpriteKind {
 sprites.onOverlap(SpriteKind.collision1, SpriteKind.Projectile, function on_on_overlap(sprite: Sprite, otherSprite: Sprite) {
     
     score += 1
+    sprites.destroy(ball2)
+    do_something()
     if (score >= 10) {
         game.setGameOverMessage(true, "Left Side Wins!")
-        game.gameOver(true)
+        game.over(true)
     }
     
 })
@@ -33,10 +35,12 @@ function draw_text(x2: number, y2: number, text3: string): Sprite {
 
 sprites.onOverlap(SpriteKind.collision2, SpriteKind.Projectile, function on_on_overlap3(sprite3: Sprite, otherSprite3: Sprite) {
     
-    score2 += 10
-    if (score2 >= 1) {
+    score2 += 1
+    sprites.destroy(ball2)
+    do_something()
+    if (score2 >= 10) {
         game.setGameOverMessage(true, "Right Side Wins!")
-        game.gameOver(true)
+        game.over(true)
     }
     
 })
@@ -77,9 +81,7 @@ function do_something() {
             11111111111111111111
             `, SpriteKind.Projectile)
     ball2.setScale(0.3, ScaleAnchor.Middle)
-    ball2.setVelocity(100, 100)
-    ball2.setStayInScreen(true)
-    ball2.setBounceOnWall(true)
+    ball2.setVelocity(100, 0)
 }
 
 let ball2 : Sprite = null
