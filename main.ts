@@ -6,10 +6,11 @@ namespace SpriteKind {
     export const collision2 = SpriteKind.create()
 }
 
+tilemap`level1`
 sprites.onOverlap(SpriteKind.collision1, SpriteKind.Projectile, function on_on_overlap(sprite: Sprite, otherSprite: Sprite) {
     
     score += 1
-    sprites.destroy(ball2)
+    sprites.destroy(ball)
     do_something()
     if (score >= 10) {
         game.setGameOverMessage(true, "Left Side Wins!")
@@ -36,7 +37,7 @@ function draw_text(x2: number, y2: number, text3: string): Sprite {
 sprites.onOverlap(SpriteKind.collision2, SpriteKind.Projectile, function on_on_overlap3(sprite3: Sprite, otherSprite3: Sprite) {
     
     score2 += 1
-    sprites.destroy(ball2)
+    sprites.destroy(ball)
     do_something()
     if (score2 >= 10) {
         game.setGameOverMessage(true, "Right Side Wins!")
@@ -60,31 +61,32 @@ sprites.onOverlap(SpriteKind.right, SpriteKind.Projectile, function on_on_overla
 })
 function do_something() {
     
-    ball2 = sprites.create(img`
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            `, SpriteKind.Projectile)
-    ball2.setScale(0.3, ScaleAnchor.Middle)
-    ball2.setVelocity(100, 0)
+    ball = sprites.create(img`
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+    `, SpriteKind.Projectile)
+    ball.setStayInScreen(true)
+    ball.setBounceOnWall(true)
+    ball.setScale(0.3, ScaleAnchor.Middle)
+    ball.setVelocity(100, 0)
 }
 
-let ball2 : Sprite = null
 let score2 = 0
 let texty : Sprite = null
 let ball : Sprite = null

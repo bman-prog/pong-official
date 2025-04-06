@@ -6,12 +6,14 @@ class SpriteKind:
     collision1 = SpriteKind.create()
     collision2 = SpriteKind.create()
 
+tilemap("""level1""")
+
 
 
 def on_on_overlap(sprite, otherSprite):
-    global score, ball2
+    global score, ball
     score += 1
-    sprites.destroy(ball2)
+    sprites.destroy(ball)
     do_something()
     if score >= 10:
         game.set_game_over_message(True, "Left Side Wins!")
@@ -39,9 +41,9 @@ def draw_text(x2: number, y2: number, text3: str):
     return texty
 
 def on_on_overlap3(sprite3, otherSprite3):
-    global score2, ball2
+    global score2, ball
     score2 += 1
-    sprites.destroy(ball2)
+    sprites.destroy(ball)
     do_something()
     if score2 >= 10:
         game.set_game_over_message(True, "Right Side Wins!")
@@ -68,36 +70,38 @@ sprites.on_overlap(SpriteKind.right, SpriteKind.projectile, on_on_overlap4)
 
 
 def do_something():
-    global ball2
-    ball2 = sprites.create(img("""
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            11111111111111111111
-            """),
+    global ball
+    ball = sprites.create(img("""
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+        11111111111111111111
+    """),
         SpriteKind.projectile)
-    ball2.set_scale(0.3, ScaleAnchor.MIDDLE)
-    ball2.set_velocity(100, 0)
-ball2: Sprite = None
+    ball.set_stay_in_screen(True)
+    ball.set_bounce_on_wall(True)
+    ball.set_scale(0.3, ScaleAnchor.MIDDLE)
+    ball.set_velocity(100, 0)
 score2 = 0
 texty: Sprite = None
 ball: Sprite = None
 texty2: Sprite = None
 score = 0
+
 
 do_something()
 
